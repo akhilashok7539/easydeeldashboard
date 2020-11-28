@@ -31,7 +31,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { WalletpointsComponent } from './settings/walletpoints/walletpoints.component';
 
 const routes: Routes = [
-  {path:'',pathMatch:"full",redirectTo:"login"},
+  {path:'',pathMatch:"full",redirectTo:"home"},
   {path:'login',component:LoginComponent},
   {path:'home',component:HomeComponent},
   {path:'addcategory',component:AddCategoryComponent},
