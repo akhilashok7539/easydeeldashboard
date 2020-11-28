@@ -48,7 +48,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { SalesComponent } from './reports/sales/sales.component';
 import { PurchaseComponent } from './reports/purchase/purchase.component';
 import { DeliveryComponent } from './reports/delivery/delivery.component';
-
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +103,7 @@ import { DeliveryComponent } from './reports/delivery/delivery.component';
     MaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [  {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
