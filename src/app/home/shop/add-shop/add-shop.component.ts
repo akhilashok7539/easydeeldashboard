@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { EasydealService } from 'src/app/_services/easydeal.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-shop',
   templateUrl: './add-shop.component.html',
@@ -40,22 +42,32 @@ export class AddShopComponent implements OnInit {
   submitted = false;
 
   sname;
-  scat;
+  scat ="";
   saddress;
+  simage;
   sln;
   sphn;
   sotime;
   sctime;
+  profit;
   movalue;
   sdperc;
+  sdamnt;
   pucharge;
   dcharge;
+  showorhide = "Show";
+  status = "Active";
   check;
   checkeddays;
-  constructor(private fb: FormBuilder) { }
-
+  files;
+  currentphoto;
+  resultscat:any=[];
+  locations:any=[];
+  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router,
+    private toaster:ToastrService) { }
+  formData = new FormData();
   ngOnInit() {
-    this.shopFormRegistration = this.fb.group({
+    this.shopFormRegistration = this.formbuilder.group({
       sname: ['', Validators.required],
       scat: ['', Validators.required],
       saddress: ['', Validators.required],
@@ -63,16 +75,24 @@ export class AddShopComponent implements OnInit {
       sphn: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],
+      profit: ['', Validators.required],
       movalue: ['', Validators.required],
       sdperc: ['', Validators.required],
+      sdamnt: ['', Validators.required],
+      simage: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
+      showorhide:['', Validators.required],
+      status:['',Validators.required],
       check: ['', Validators.required],
-      checkeddays: this.fb.array([]),
+      checkeddays: this.formbuilder.array([]),
     })
-
+    this.getallCategory();
+    this.getalllocations();
 
   }
+
+  
   onChange(time: string, isChecked: boolean) {
     this.sessiondayssRepat = [];
     const emailFormArray = <FormArray>this.shopFormRegistration.controls.checkeddays;
@@ -99,13 +119,92 @@ export class AddShopComponent implements OnInit {
   }
   get f() { return this.shopFormRegistration.controls; }
 
+  getallCategory(){
+    this.easydealservice.getcat().subscribe(
+      data =>{
+        console.log(data);
+        this.resultscat =data;
+    
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+
+  getalllocations(){
+    this.easydealservice.getalllocations().subscribe(
+      data =>{
+        console.log(data);
+        
+        this.locations = data;
+
+        this.repeatsessiondays =this.locations;
+     
+        
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
+  }
+  addshopimage(event)
+  {
+    
+    this.files = event.target.files;
+    this.currentphoto = this.files.item(0);
+  }
   submit() {
     this.submitted = true;
     if (this.shopFormRegistration.invalid) {
       return;
     }
-    else {
+    else 
+    {
+    this.formData.append("shop_name",this.sname)
+    this.formData.append("category_id",this.scat)
+    this.formData.append("shop_phone",this.sphn)
+    this.formData.append("shop_landline",this.sln)
+    // this.formData.append("open",this.sotime)
+    // this.formData.append("close",this.sctime)
+    this.formData.append("open_time","10")
+    this.formData.append("clos_time","50")
+    this.formData.append("shop_discount",this.sdperc)
+    this.formData.append("shop_discamountamount",this.sdamnt)
+    this.formData.append("pickupRate",this.pucharge)
+    this.formData.append("deliveryRate",this.dcharge)
+    this.formData.append("minimum",this.movalue)
+    this.formData.append("show",this.showorhide)
+    this.formData.append("state",this.status)
+    this.formData.append("profitpercentage",this.profit)
+    this.formData.append("shop_img",this.currentphoto)
+    this.formData.append("shop_address",this.saddress)
+    this.formData.append("locationId",this.sessiondayssRepat['0'])
 
-    }
+   this.easydealservice.addshop(this.formData).subscribe(
+     data=>{
+      console.log(data);
+      this.formData.delete;
+      this.router.navigate(['/shop']);
+      this.toaster.success("Shop Added Successfully")
+     },
+     error=>{
+       console.log(error);
+      this.formData.delete;
+       
+     }
+     
+   )
+
   }
+  
+}
+// addcategoryimage(event) {
+
+//   this.files = event.target.files;
+//   this.currentphoto = this.files.item(0);
+  
+//   //  console.log(this.currentFoto)
+// }
 }

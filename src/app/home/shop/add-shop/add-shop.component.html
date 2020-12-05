@@ -30,13 +30,19 @@
 
                 <div class="col-sm-4">
                     <label for="">Shop Category </label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Category" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
 
+                    <select name="" id="" class="form-control" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
+                        <option value="" disabled selected>Choose a option </option>
+
+                        <option *ngFor="let c of resultscat" value="{{c._id}}">{{c.category_name}}</option>
+                    </select>
                     <div *ngIf="submitted && f.scat.errors" class="invalid-feedback">
                         <div *ngIf="f.scat.errors.required">Shop category is required</div>
 
                     </div>
                 </div>
+
+
 
                 <div class="col-sm-4">
                     <label for="">Shop Address </label>
@@ -89,11 +95,31 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <label for="">Profit Percentage </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Profit Percentage" [(ngModel)]="profit" [ngClass]="{ 'is-invalid': submitted && f.profit.errors }" formControlName="profit">
+
+                    <div *ngIf="submitted && f.profit.errors" class="invalid-feedback">
+                        <div *ngIf="f.profit.errors.required">Profit Percentage is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
                     <label for="">Minimum Order Value </label>
                     <input type="number" class="form-control" placeholder="Enter Your Minimum Order Value" [(ngModel)]="movalue" [ngClass]="{ 'is-invalid': submitted && f.movalue.errors }" formControlName="movalue">
 
                     <div *ngIf="submitted && f.movalue.errors" class="invalid-feedback">
                         <div *ngIf="f.movalue.errors.required">Minimum order value is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="">Shop Discount Amount </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Shop Discount Amount" [(ngModel)]="sdamnt" [ngClass]="{ 'is-invalid': submitted && f.sdamnt.errors }" formControlName="sdamnt">
+
+                    <div *ngIf="submitted && f.sdamnt.errors" class="invalid-feedback">
+                        <div *ngIf="f.sdamnt.errors.required">Shop discount amount is required</div>
 
                     </div>
                 </div>
@@ -128,27 +154,37 @@
                     </div>
                 </div>
 
-
                 <div class="col-sm-4">
+                    <label for="">Shop Image</label>
+                    <input class="form-control" #file type="file" (change)="addshopimage($event)" [ngClass]="{ 'is-invalid': submitted && f.simage.errors }" formControlName="simage">
+
+                    <div *ngIf="submitted && f.simage.errors" class="invalid-feedback">
+                        <div *ngIf="f.simage.errors.required">Shop image is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Show / Hide</label>
                     <br> show
-                    <input type="radio"> Hide
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="showorhide" value="Show" formControlName="showorhide"> Hide
+                    <input type="radio" [(ngModel)]="showorhide" value="Hide" formControlName="showorhide">
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Status</label>
                     <br> Active
-                    <input type="radio"> Inactive
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
+                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div>
+
 
                 <div class="col-sm-12">
                     <label for=""> Choose Locations</label>
                     <div class="row" style="padding: 15px;">
                         <div class="radio-toolbar" *ngFor="let repeatsessiondays of repeatsessiondays">
-                            <input formControlName="check" (change)="onChange(repeatsessiondays.id, $event.target.checked)" type="checkbox" id="{{repeatsessiondays.day}}" name="radioFruit" value="{{repeatsessiondays.id}}">
-                            <label for="{{repeatsessiondays.day}}">{{repeatsessiondays.day}}</label>
+                            <input formControlName="check" (change)="onChange(repeatsessiondays._id, $event.target.checked)" type="checkbox" id="{{repeatsessiondays.location}}" name="radioFruit" value="{{repeatsessiondays._id}}">
+                            <label for="{{repeatsessiondays.location}}">{{repeatsessiondays.location}}</label>
 
                         </div>
                     </div>

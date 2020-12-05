@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-shop',
@@ -8,22 +10,40 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  displayedColumns = ['image', 'shopname', 'categoryname', 'phonenumber', 'servicelocation', 'action'];
+  displayedColumns = ['image', 'shopname', 'categoryname', 'phonenumber', 'servicelocation', 'status','action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
-  results: any[];
+  results: any=[];
+  apiUrl;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
+    
+
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private easydealservice:EasydealService,private router:Router,) { }
 
   ngOnInit() {
+    this.apiUrl="http://shopgi.in/";
+    this.getallShop();
   }
+  getallShop(){
+    this.easydealservice.getshop().subscribe(
+      data =>{
+        console.log(data);
+        this.results =data;
+        this.dataSource.data = this.results;
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+  
 
   selectedevent(s) {
     console.log(s);
@@ -82,5 +102,10 @@ export class ShopComponent implements OnInit {
     ]
     }
 
+  }
+  edit(r)
+  {
+    sessionStorage.setItem("shop",JSON.stringify(r))
+    this.router.navigate(['/editshop'])
   }
 }
