@@ -93,7 +93,7 @@ export class AddShopMenuComponent implements OnInit {
         },
         error =>{
           this.ToastrService.error("Shop Menu unable to add sucessfully ")
-
+          
         }
       )
     }
