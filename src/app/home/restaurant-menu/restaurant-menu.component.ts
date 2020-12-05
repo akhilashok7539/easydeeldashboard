@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { error } from 'console';
+
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
