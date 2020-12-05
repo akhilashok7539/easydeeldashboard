@@ -88,7 +88,8 @@ export class AddShopMenuComponent implements OnInit {
       
       this.easydealservice.addrestmenusss(this.formData).subscribe(
         data =>{
-          this.ToastrService.success("Shop Menu added sucessfully ")
+          this.ToastrService.success("Shop Menu added sucessfully ");
+          this.router.navigate(['/shopmenu']);
         },
         error =>{
           this.ToastrService.error("Shop Menu unable to add sucessfully ")
