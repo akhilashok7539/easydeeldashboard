@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { EditCoursetypeComponent } from './coursetype/edit-coursetype/edit-coursetype.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
@@ -12,8 +13,10 @@ import { EditCategoryComponent } from './home/category/edit-category/edit-catego
 import { AddDeliveryBoysComponent } from './home/delivery-boys/add-delivery-boys/add-delivery-boys.component';
 import { DeliveryBoysComponent } from './home/delivery-boys/delivery-boys.component';
 import { AddGeneralMenuComponent } from './home/general-menu/add-general-menu/add-general-menu.component';
+import { EditGeneralMenuComponent } from './home/general-menu/edit-general-menu/edit-general-menu.component';
 import { GeneralMenuComponent } from './home/general-menu/general-menu.component';
 import { AddGeneralShopMenuComponent } from './home/general-shop-menu/add-general-shop-menu/add-general-shop-menu.component';
+import { EditGeneralShopMenuComponent } from './home/general-shop-menu/edit-general-shop-menu/edit-general-shop-menu.component';
 import { GeneralShopMenuComponent } from './home/general-shop-menu/general-shop-menu.component';
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './home/orders/orders.component';
@@ -22,8 +25,10 @@ import { PincodesComponent } from './home/pincodes/pincodes.component';
 import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
 import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
 import { AddRestaurantMenuComponent } from './home/restaurant-menu/add-restaurant-menu/add-restaurant-menu.component';
+import { EditRestaurantMenuComponent } from './home/restaurant-menu/edit-restaurant-menu/edit-restaurant-menu.component';
 import { RestaurantMenuComponent } from './home/restaurant-menu/restaurant-menu.component';
 import { AddShopMenuComponent } from './home/shop-menu/add-shop-menu/add-shop-menu.component';
+import { EditShopMenuComponent } from './home/shop-menu/edit-shop-menu/edit-shop-menu.component';
 import { ShopMenuComponent } from './home/shop-menu/shop-menu.component';
 import { AddShopComponent } from './home/shop/add-shop/add-shop.component';
 import { EditShopComponent } from './home/shop/edit-shop/edit-shop.component';
@@ -101,10 +106,14 @@ const routes: Routes = [
   {path:'generalcategory',component:GeneralCategoryComponent},
   {path:'addgeneralcategory',component:AddGeneralCategoryComponent},
   {path:'editgeneralcategory',component:EditGeneralCategoryComponent},
+  {path:'editgeneralmenu',component:EditGeneralMenuComponent},
 
+  {path:'editcoursetype',component:EditCoursetypeComponent},
+  {path:'edit-rest-menu',component:EditRestaurantMenuComponent},
 
+  {path:'edit-shop-menu',component:EditShopMenuComponent},
 
-
+  {path:'edit-general-shop-menu',component:EditGeneralShopMenuComponent},
 
 
 

@@ -24,7 +24,9 @@ export class AddOffersComponent implements OnInit {
   ctime;
   cashback;
   bimages;
-  
+  formData = new FormData();
+  files;
+  currentphoto;
   constructor(private formbuilder:FormBuilder) { }
 
   ngOnInit() {
@@ -48,7 +50,12 @@ export class AddOffersComponent implements OnInit {
 
   }
 get f() { return this.offerFormRegistration.controls; }
-
+addimg(event)
+{
+  
+  this.files = event.target.files;
+  this.currentphoto = this.files.item(0);
+}
   submit(){
     this.submitted = true;
 
@@ -57,6 +64,15 @@ get f() { return this.offerFormRegistration.controls; }
         return;
     }
     else{
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
+      this.formData.append("",this.sname);
 
     }
   }
