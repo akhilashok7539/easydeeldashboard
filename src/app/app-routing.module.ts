@@ -36,6 +36,7 @@ import { ShopComponent } from './home/shop/shop.component';
 import { UsersComponent } from './home/users/users.component';
 import { LoginComponent } from './login/login.component';
 import { AddOffersComponent } from './offers/add-offers/add-offers.component';
+import { EditOffersComponent } from './offers/edit-offers/edit-offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { DeliveryComponent } from './reports/delivery/delivery.component';
 import { PurchaseComponent } from './reports/purchase/purchase.component';
@@ -115,6 +116,7 @@ const routes: Routes = [
 
   {path:'edit-general-shop-menu',component:EditGeneralShopMenuComponent},
 
+  {path:'edit-offers',component:EditOffersComponent},
 
 
   
