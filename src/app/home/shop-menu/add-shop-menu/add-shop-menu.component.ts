@@ -13,7 +13,7 @@ export class AddShopMenuComponent implements OnInit {
   shopmenuFormRegistration: FormGroup;
   submitted = false;
 
-  sname = "";
+  sname="";
   location = "";
   mname = "";
   mdes;
@@ -106,9 +106,10 @@ export class AddShopMenuComponent implements OnInit {
   }
   shopselcted(s)
   {
-    console.log(s);
+    console.log(JSON.stringify(s.target.value));
     
   }
+
   getallShop() {
     this.easydealservice.getshop().subscribe(
       data => {
