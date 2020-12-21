@@ -15,7 +15,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
   submitted = false;
   generalmenu;
   sname = '';
-  cname = '';
+  location= '';
   iquant;
   iprice;
   israte;
@@ -35,7 +35,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
   generalshopmenu:any=[];
   charge ="No";
   cleaning;
-
+  locations:any=[];
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -43,7 +43,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
     this.generalshopmenuFormRegistration = this.formbuilder.group(
       {
         sname: ['', Validators.required],
-        cname: ['', Validators.required],
+        // cname: [''],
+        location: ['', Validators.required],
         iquant: ['', Validators.required],
         iprice: ['', Validators.required],
         israte: ['', Validators.required],
@@ -52,6 +53,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
         idpercent: ['', Validators.required],
         iname: ['', Validators.required],
 
+        charge: ['', Validators.required],
+        cleaning: [''],
         // showorhide: ['', Validators.required],
         // status: ['', Validators.required],
       })
@@ -67,13 +70,38 @@ export class EditGeneralShopMenuComponent implements OnInit {
       this.imrp = this.gmenu['itm_mrp']
       this.idamount = this.gmenu['itm_disc']
       this.idpercent = this.gmenu['itm_discam']
-      this.cname = this.gmenu.category_id['_id']
+      // this.locations = this.gmenu.locationId
+      // console.log(this.locations);
+      // this.locations.push(this.gmenu.locationId)
+      this.getalllocationsByShopId();
+      let arr = [];
+      arr.push(this.gmenu.locationId)
+      this.locations = arr;
+
+      
       this.id = this.gmenu['_id']
     this.getallShop();
-    this.getallcategorytype();
+    // this.getallcategorytype();
     this.getallgeneralmenu();
+  
   }
   get f() { return this.generalshopmenuFormRegistration.controls; }
+  getalllocationsByShopId()
+  {
+    this.easydeelservice.getalllocationbyshopid(this.sname).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+
+        this.location = this.gmenu.locationId['_id']
+      },
+      error =>{
+
+      }
+    )
+    
+  }
   getallShop() {
     this.easydeelservice.getshopsbygeneralcategory().subscribe(
       data => {
@@ -98,19 +126,19 @@ export class EditGeneralShopMenuComponent implements OnInit {
       }
     )
   }
-  getallcategorytype() {
-    this.easydeelservice.getallgeneralcategory().subscribe(
-      data => {
+  // getallcategorytype() {
+  //   this.easydeelservice.getallgeneralcategory().subscribe(
+  //     data => {
 
-        this.cat = data;
+  //       this.cat = data;
 
-      },
-      error => {
+  //     },
+  //     error => {
 
-      },
-    )
+  //     },
+  //   )
 
-  }
+  // }
   getallgeneralmenu()
   {
   this.easydeelservice.getallgeneralmenu().subscribe(
@@ -132,6 +160,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.generalshopmenuFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {
@@ -139,7 +169,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
       this.button = 'Processing';
       let req = {
         "shop_id": this.sname,
-        "category_id": this.cname,
+        // "category_id": this.cname,
+        "locationId":this.location,
         "generalmenu_id":this.iname,
         "quantity": this.iquant,
         "itemprice": this.iprice,
@@ -167,5 +198,24 @@ export class EditGeneralShopMenuComponent implements OnInit {
       )
 
     }
+  }
+  shopselcted(s)
+  {
+    console.log(s);
+    this.easydeelservice.getalllocationbyshopid(s).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+    
+        
+
+      },
+      error =>{
+
+      }
+    )
+
+    
   }
 }
