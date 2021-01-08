@@ -74,6 +74,15 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
+import { ShopcredentialsComponent } from './settings/shopcredentials/shopcredentials.component';
+import { AddShopCredentialsComponent } from './settings/shopcredentials/add-shop-credentials/add-shop-credentials.component';
+import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-shop-credentials/edit-shop-credentials.component';
+import { ChatBoxComponent } from './settings/chat-box/chat-box.component';
+import { AddChatBoxComponent } from './settings/chat-box/add-chat-box/add-chat-box.component';
+import { EditChatBoxComponent } from './settings/chat-box/edit-chat-box/edit-chat-box.component';
+import { AdminCredentialsComponent } from './settings/admin-credentials/admin-credentials.component';
+import { AddAdminCredentialsComponent } from './settings/admin-credentials/add-admin-credentials/add-admin-credentials.component';
+import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit-admin-credentials/edit-admin-credentials.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -147,6 +156,15 @@ import { EditGeneralCategoryComponent } from './general-category/edit-general-ca
     GeneralCategoryComponent,
     AddGeneralCategoryComponent,
     EditGeneralCategoryComponent,
+    ShopcredentialsComponent,
+    AddShopCredentialsComponent,
+    EditShopCredentialsComponent,
+    ChatBoxComponent,
+    AddChatBoxComponent,
+    EditChatBoxComponent,
+    AdminCredentialsComponent,
+    AddAdminCredentialsComponent,
+    EditAdminCredentialsComponent,
     // MatSort
   ],
   imports: [
