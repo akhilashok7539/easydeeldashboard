@@ -271,6 +271,10 @@ export class EasydealService {
   reject(s,uid,esdeelid){
     return this.http.patch(this.apiUrl+'orders/status/'+uid+'/'+esdeelid,s);
   }
+  getshopdetailsbyorderid(d)
+  {
+    return this.http.get(this.apiUrl+"orders/shop/item/"+d);
+  }
   getallpreorders(){
     return this.http.get(this.apiUrl+'preorders');
   }
@@ -285,5 +289,17 @@ export class EasydealService {
   getallusers()
   {
     return this.http.get(this.apiUrl+'users');
+  }
+  addupinumber(req)
+  {
+    return this.http.post(this.apiUrl+'upinumber/post',req);
+  }
+  getallupinumbers(){
+    return this.http.get(this.apiUrl+'upinumber');
+
+  }
+  updateupi(req,id)
+  {
+    return this.http.patch(this.apiUrl+'upinumber/edit/'+id,req);
   }
 }
