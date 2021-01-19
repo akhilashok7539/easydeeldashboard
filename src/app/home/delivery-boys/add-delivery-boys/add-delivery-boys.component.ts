@@ -21,11 +21,9 @@ export class AddDeliveryBoysComponent implements OnInit {
   password;
   isLoading = false;
   button = 'Submit';
-
-
-  constructor(private formbuilder: FormBuilder,
-    private router:Router,
-    private toaster:ToastrService,private easydeelservie:EasydealService) { }
+  locations:any = [];
+  location;
+  constructor(private formbuilder: FormBuilder, private router:Router, private toastr:ToastrService,private easydeelservie:EasydealService) { }
 
   ngOnInit() {
     this.deliveryboyFormRegistration = this.formbuilder.group(
@@ -36,9 +34,10 @@ export class AddDeliveryBoysComponent implements OnInit {
         mobile: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
         aadhar: ['', Validators.required],
         password: ['', Validators.required],
+        location: ['', Validators.required],
 
       })
-
+      this.getalllocations();
   }
   get f() { return this.deliveryboyFormRegistration.controls; }
 
@@ -62,23 +61,37 @@ export class AddDeliveryBoysComponent implements OnInit {
         "mobileNo": this.mobile,
         "aadhar_id": this.aadhar,
         "password": this.password,
+        "locationId":this.location,
         "state":"Active"
       }
       this.easydeelservie.adddeliveryboy(req).subscribe(
         data =>{
-          this.toaster.success("Delivery Boy Added");
+          this.toastr.success("Delivery Boy Added");
           this.router.navigate(['/deliveryboys']);
         },
         error =>{
           this.isLoading = false;
           this.button = 'submit';
           // this.toaster.error(error.error)
-          this.toaster.error(error.error['responce']);
+          this.toastr.error(error.error['responce']);
           
           // this.toaster.error("Unable to add Delivery Boy");
         }
       )
 
     }
+  }
+  getalllocations(){
+    this.easydeelservie.getalllocations().subscribe(
+      data =>{
+        console.log(data);
+        this.locations = data;
+        
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
   }
 }

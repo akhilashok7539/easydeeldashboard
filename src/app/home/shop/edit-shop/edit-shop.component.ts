@@ -30,6 +30,7 @@ export class EditShopComponent implements OnInit {
   sdperc;
   pucharge;
   dcharge;
+  dtime;
   showorhide = "Show";
   status = "Active";
   check;
@@ -44,6 +45,13 @@ export class EditShopComponent implements OnInit {
   button = 'Submit';
   sessionarray:any=[];
   condtionyesorno = 'no';
+  fileData: any;
+error;
+imagePreview;
+employee
+isvalidphoto = false;
+
+
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
@@ -55,7 +63,6 @@ export class EditShopComponent implements OnInit {
 
       sln: ['', Validators.required],
       sphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
-
       sotime: ['', Validators.required],
 
       sctime: ['', Validators.required],
@@ -65,7 +72,7 @@ export class EditShopComponent implements OnInit {
       sdperc: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
-
+      dtime: ['', Validators.required],
       sdamnt: ['', Validators.required],
       simage: [''],
       showorhide: ['', Validators.required],
@@ -77,7 +84,7 @@ export class EditShopComponent implements OnInit {
     this.getalllocations();
     this.shopdetails = JSON.parse(sessionStorage.getItem("shop"));
     this.sname = this.shopdetails['shop_name']
-
+    this.dtime = this.shopdetails['deliveryTime']
     this.scat = this.shopdetails.category_id['_id']
     this.saddress = this.shopdetails['shop_address']
     this.sln = this.shopdetails['shop_landline']
@@ -235,4 +242,42 @@ export class EditShopComponent implements OnInit {
     }
 
   }
+  addcategoryimage(event) {
+    this.isvalidphoto = true;
+    window.URL = window.URL;
+    
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.files = event.target.files[0];
+    
+      let img = new Image();
+    
+      img.src = window.URL.createObjectURL( this.files );
+      reader.readAsDataURL(this.files);
+      reader.onload = () => {
+        setTimeout(() => {
+          const width = img.naturalWidth;
+          const height = img.naturalHeight;
+    
+          window.URL.revokeObjectURL( img.src );
+          console.log(width + '*' + height);
+          if ( width !== 100 && height !== 100) {
+            this.isvalidphoto = true;
+              console.log(width,height)
+            this.toaster.error('photo should be 100*100 size');
+            
+            // form.reset();
+          } else {
+            this.isvalidphoto = false;
+              console.log(width,height)
+            // this.imgURL = reader.result;
+            this.currentphoto = this.files.item(0);
+          
+          }
+        }, 2000);
+          };
+      }
+      }
+    
 }

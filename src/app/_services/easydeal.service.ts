@@ -99,6 +99,10 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'cource');
 
   }
+  addrestmenuforapproval(req){
+    return this.http.post(this.apiUrl + 'location_addrestaurent/post', req);
+
+  }
   addrestmenu(r) {
     return this.http.post(this.apiUrl + 'menurest/post', r);
 
@@ -302,4 +306,15 @@ export class EasydealService {
   {
     return this.http.patch(this.apiUrl+'upinumber/edit/'+id,req);
   }
+  getallmeusforapproval(){
+    return this.http.get(this.apiUrl+'location_addrestaurent');
+  }
+  approvemenu(s,id){
+    return this.http.patch(this.apiUrl+'location_addrestaurent/approved/'+id,s);
+
+  }
+  getwalletpoints()
+{
+  return this.http.get(this.apiUrl+'walletpoint')
+}
 }

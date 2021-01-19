@@ -55,6 +55,7 @@ export class AddShopComponent implements OnInit {
   sdamnt;
   pucharge;
   dcharge;
+  dtime;
   showorhide = "Show";
   status = "Active";
   check;
@@ -65,6 +66,14 @@ export class AddShopComponent implements OnInit {
   locations: any = [];
   isLoading = false;
   button = 'Submit';
+
+  
+fileData: any;
+error;
+imagePreview;
+employee
+isvalidphoto = false;
+
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService,
      private router: Router,
     private toaster: ToastrService) { }
@@ -76,7 +85,7 @@ export class AddShopComponent implements OnInit {
       saddress: ['', Validators.required],
       sln: [''],
       sphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
-
+      dtime: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],
       profit: ['', Validators.required],
@@ -175,6 +184,7 @@ export class AddShopComponent implements OnInit {
       this.formData.append("shop_landline", this.sln)
       this.formData.append("open_time",this.sotime)
       this.formData.append("clos_time",this.sctime)
+      this.formData.append("deliveryTime",this.dtime)
       // this.formData.append("open_time", "10")
       // this.formData.append("clos_time", "50")
       this.formData.append("shop_discount", this.sdperc)
@@ -215,11 +225,42 @@ export class AddShopComponent implements OnInit {
     }
 
   }
-  // addcategoryimage(event) {
-
-  //   this.files = event.target.files;
-  //   this.currentphoto = this.files.item(0);
-
-  //   //  console.log(this.currentFoto)
-  // }
+  addcategoryimage(event) {
+    this.isvalidphoto = true;
+    window.URL = window.URL;
+    
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.files = event.target.files[0];
+    
+      let img = new Image();
+    
+      img.src = window.URL.createObjectURL( this.files );
+      reader.readAsDataURL(this.files);
+      reader.onload = () => {
+        setTimeout(() => {
+          const width = img.naturalWidth;
+          const height = img.naturalHeight;
+    
+          window.URL.revokeObjectURL( img.src );
+          console.log(width + '*' + height);
+          if ( width !== 100 && height !== 100) {
+            this.isvalidphoto = true;
+              console.log(width,height)
+            this.toaster.error('photo should be 100*100 size');
+            
+            // form.reset();
+          } else {
+            this.isvalidphoto = false;
+              console.log(width,height)
+            // this.imgURL = reader.result;
+            this.currentphoto = this.files.item(0);
+          
+          }
+        }, 2000);
+          };
+      }
+      }
+    
 }
