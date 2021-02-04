@@ -114,10 +114,10 @@ export class ViewOrderDetailsComponent implements OnInit {
           let req :any=[];
 
           req = data['data'];
-          console.log(data['data'].shop_id);
+          // console.log();
           
           this.shopdetails = req;
-          // console.log(this.shopdetails[0].shop);
+          console.log(this.shopdetails[0].shop_id['shop_name']);
           
       },
       error =>{
