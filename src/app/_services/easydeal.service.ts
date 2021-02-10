@@ -253,6 +253,9 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'deliveryboy');
 
   }
+  getalldeliveryboybylocations(id){
+    return this.http.get(this.apiUrl+'deliveryboy/location/'+id)
+  }
   getorerbyuserid(s) {
     return this.http.get(this.apiUrl + 'orders/items/' + s);
 
