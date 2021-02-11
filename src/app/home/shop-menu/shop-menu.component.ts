@@ -18,9 +18,11 @@ export class ShopMenuComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
+  options2: any = "";
   results: any[];
   status;
   shopmenu: any = [];
+  filter2results:any=[];
   userdetails;
   locationid;
 
@@ -91,63 +93,57 @@ export class ShopMenuComponent implements OnInit {
     sessionStorage.setItem("shopmenu", JSON.stringify(s));
     this.router.navigate(['/edit-shop-menu'])
   }
-  selectedevent(s) {
+  filter1(s) {
     console.log(s);
-    if (s == "s") {
-      this.results = [
-        {
-          "id": "`1",
-          "shopmenu": "Blackforest"
-        },
-        {
-          "id": "`1",
-          "shopmenu": "Adithya"
-        }, {
-          "id": "`1",
-          "shopmenu": "Murali"
-        }, {
-          "id": "`1",
-          "shopmenu": "Thaza"
-        },
-      ]
+    if (this.status == 'masteradmin') {
+      if (s == "s") {
+        this.easydealservice.getshop().subscribe(
+          data =>{
+            console.log(data);
+            this.filter2results = data;
+           
+          },
+          error =>{
+            console.log(error);
+          }
+        )
+      }
+     
+      else  {
+        this.easydealservice.getalllocations().subscribe(
+          data =>{
+            console.log(data);
+            let results:any =[];
+            results = data;
+            this.filter2results= results;
+            
+          },
+          error =>{
+            console.log(error);
+            
+          }
+        )
+      }
     }
-    else if (s == "m") {
-      this.results = [
-        {
-          "id": "`1",
-          "shopmenu": "Kerala"
-        },
-        {
-          "id": "`1",
-          "shopmenu": "Italian"
-        }, {
-          "id": "`1",
-          "shopmenu": "Chineese"
-        }, {
-          "id": "`1",
-          "shopmenu": "Mexico"
-        },
-      ]
+    else if (this.status == 'locationamin') 
+    {
+      if (s == "s") {
+      
+      }
+      else {
+       
+      }
     }
-    else if (s == "l") {
-      this.results = [
-        {
-          "id": "`1",
-          "shopmenu": "Haripad"
-        },
-        {
-          "id": "`1",
-          "shopmenu": "Kayamkulam"
-        }, {
-          "id": "`1",
-          "shopmenu": "Mavelikara"
-        }, {
-          "id": "`1",
-          "shopmenu": "Karunagappally"
-        },
-      ]
-    }
+    else{
 
+    }
+  
+
+  }
+  filter2(s)
+  {
+    console.log(s);
+    
   }
   active(r) {
     this.easydealservice.changerestaurantmenuactive(r._id).subscribe(
