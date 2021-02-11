@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options">
+                <select class="form-control" id="" [(ngModel)]="options" (change)="filter1(options)">
                 <option value="" selected>Choose a option</option>
                 <option value="c">Course Type</option>
                 <option value="m">Menu Name</option>
@@ -27,9 +27,9 @@
 
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options">
+                <select class="form-control" id="" [(ngModel)]="options2">
                    <option value="" selected>Choose a option</option>
-                   <option value="" *ngFor="let results of results">{{results.restaurantmenu}}</option>
+                   <option  *ngFor="let results of courcetypes" value="{{results._id}}">{{results.cource_name}}</option>
     
                   </select>
             </div>

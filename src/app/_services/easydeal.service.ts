@@ -114,12 +114,20 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'menurest?page=' + page);
 
   }
+  searchresmenu(s)
+  {
+    return this.http.get(this.apiUrl+'menurest/search?data='+s);
+  }
   changestatusrestmenu(s) {
     let req = {
 
     }
     return this.http.patch(this.apiUrl + 'menurest/edit/state/' + s, req);
 
+  }
+  searchresmenubycourcetype(subcatid,searchkey)
+  {
+    return this.http.get(this.apiUrl+'menurest/search/'+subcatid+'?data='+searchkey);
   }
   addrestmenusss(fomrdata) {
     return this.http.post(this.apiUrl + 'addrestaurantmenu/post', fomrdata);
@@ -130,8 +138,8 @@ export class EasydealService {
     return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/' + id, fomrdata);
 
   }
-  getallmenus() {
-    return this.http.get(this.apiUrl + 'addrestaurantmenu/info');
+  getallmenus(page) {
+    return this.http.get(this.apiUrl + 'addrestaurantmenu/info?page='+page+'&limit=25');
 
   }
   getallmenusbylocation(id) {
@@ -264,6 +272,9 @@ export class EasydealService {
     return this.http.patch(this.apiUrl + 'orders/delivery/' + userid + '/' + easydeel, s);
   }
   reject(s, uid, esdeelid) {
+    return this.http.patch(this.apiUrl + 'orders/status/' + uid + '/' + esdeelid, s);
+  }
+  pending(s, uid, esdeelid) {
     return this.http.patch(this.apiUrl + 'orders/status/' + uid + '/' + esdeelid, s);
   }
   getshopdetailsbyorderid(d) {
