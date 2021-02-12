@@ -66,12 +66,14 @@ export class ShopMenuComponent implements OnInit {
     else if (this.status == 'locationamin') {
       this.locationid = this.userdetails['locationId']._id;
       console.log(this.locationid);
-      this.easydealservice.getallmenusbylocation(this.locationid).subscribe(
+      this.easydealservice.getallmenusbylocation(this.locationid,this.page).subscribe(
         data => {
           let arr: any = [];
           arr = data;
-          this.shopmenu = data;
+          this.shopmenu = data['posts'];
           this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
           console.log(arr)
         },
         error => {
@@ -193,24 +195,49 @@ export class ShopMenuComponent implements OnInit {
   }
 
   changePage(event) {
-    console.log(event.pageIndex)
-    this.pagenumber = event.pageIndex;
-    this.easydealservice.getallmenus(event.pageIndex).subscribe(
-      data => {
-        this.dataSource = new MatTableDataSource();
-        let arr: any = [];
-        arr = data;
-        this.shopmenu = data['shop'];
+    if (this.status == 'masteradmin')
+    {
+      console.log(event.pageIndex)
+      this.pagenumber = event.pageIndex;
+      this.easydealservice.getallmenus(event.pageIndex).subscribe(
+        data => {
+          this.dataSource = new MatTableDataSource();
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['shop'];
+  
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(this.totalLength)
+        },
+        error => {
+  
+        }
+      )
+  
+    }
+    else if (this.status == 'locationamin') {
+      console.log(event.pageIndex)
+      this.pagenumber = event.pageIndex;
+      this.easydealservice.getallmenusbylocation(this.locationid,event.pageIndex).subscribe(
+        data => {
+          this.dataSource = new MatTableDataSource();
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['posts'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
 
-        this.dataSource.data = this.shopmenu;
-        let totalelements = data['totalPages'] * 25;
-        this.totalLength = totalelements;
-        console.log(this.totalLength)
-      },
-      error => {
+          this.totalLength = totalelements;
+          console.log(this.totalLength)
+          console.log(arr)
+        },
+        error => {
 
-      }
-    )
-
+        }
+      )
+    }
+   
   }
 }

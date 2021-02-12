@@ -142,8 +142,8 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'addrestaurantmenu/info?page='+page+'&limit=25');
 
   }
-  getallmenusbylocation(id) {
-    return this.http.get(this.apiUrl + 'addrestaurantmenu/location/rest/' + id);
+  getallmenusbylocation(id,page) {
+    return this.http.get(this.apiUrl + 'addrestaurantmenu/location/rest/' + id+'?page='+page+'&limit=25');
 
   }
   addgeneralitemmenu(s) {
