@@ -177,21 +177,41 @@ export class ShopMenuComponent implements OnInit {
 
   }
   getdataforpagenumber() {
-   
-    this.easydealservice.getallmenus(this.pagenumber).subscribe(
-      data => {
-        let arr: any = [];
-        arr = data;
-        this.shopmenu = data['shop'];
-        this.dataSource.data = this.shopmenu;
-        let totalelements = data['totalPages'] * 25;
-        this.totalLength = totalelements;
-        console.log(arr)
-      },
-      error => {
+    if (this.status == 'masteradmin') {
+      this.easydealservice.getallmenus(this.pagenumber).subscribe(
+        data => {
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['shop'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(arr)
+        },
+        error => {
 
-      }
-    )
+        }
+      )
+    }
+    else if (this.status == 'locationamin') {
+      this.locationid = this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydealservice.getallmenusbylocation(this.locationid,this.pagenumber).subscribe(
+        data => {
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['posts'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(arr)
+        },
+        error => {
+
+        }
+      )
+    }
+   
   }
 
   changePage(event) {
