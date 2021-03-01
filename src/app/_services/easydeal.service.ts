@@ -67,7 +67,7 @@ export class EasydealService {
 
     }
 
-    return this.http.patch(this.apiUrl + 'shop/edit/state/' + e, req);
+    return this.http.patch(this.apiUrl + 'shop/edit/shop_manual/' + e, req);
   }
 
   changerestaurantmenuactive(a) {
