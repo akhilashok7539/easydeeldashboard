@@ -92,10 +92,10 @@
 
                     <!--Status Column -->
                     <ng-container matColumnDef="status">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Shop Status </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <p style="font-weight: bold; color: green;" *ngIf="row.shop_state == 'Active'">{{row.shop_state}} </p>
-                            <p style="font-weight: bold; color: red;" *ngIf="row.shop_state == 'Inactive'">{{row.shop_state}} </p>
+                            <p style="font-weight: bold; color: green;" *ngIf="row.shop_state == 'Active'">Opened </p>
+                            <p style="font-weight: bold; color: red;" *ngIf="row.shop_state == 'Inactive'">Closed </p>
                         </mat-cell>
                     </ng-container>
 
