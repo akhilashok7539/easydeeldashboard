@@ -69,7 +69,9 @@ export class EasydealService {
 
     return this.http.patch(this.apiUrl + 'shop/edit/shop_manual/' + e, req);
   }
-
+  getrestmenubyshopid(s){
+    return this.http.get(this.apiUrl+'addrestaurantmenu/shop/'+s);
+  }
   changerestaurantmenuactive(a) {
     let req = {
 
@@ -237,7 +239,7 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'shop/category/menutype/general');
   }
   getallorder() {
-    return this.http.get(this.apiUrl + 'orders');
+    return this.http.get(this.apiUrl + 'orders/info');
   }
   getallorderBylocation(s)
   {
@@ -293,6 +295,10 @@ export class EasydealService {
   getallusers() {
     return this.http.get(this.apiUrl + 'users');
   }
+  getallusersbyloation(id){
+    return this.http.get(this.apiUrl + 'users/location/'+id);
+
+  }
   addupinumber(req) {
     return this.http.post(this.apiUrl + 'upinumber/post', req);
   }
@@ -345,5 +351,8 @@ export class EasydealService {
 updatelocation(req,id)
 {
   return this.http.patch(this.apiUrl+'location/edit/'+id,req);
+}
+searchbyitemname(id,searchstring){
+  return this.http.get(this.apiUrl+'addrestaurantmenu/search/shop/'+id+'?data='+searchstring);
 }
 }
