@@ -228,6 +228,12 @@ export class EasydealService {
     return this.http.patch(this.apiUrl + 'offers/edit/state/' + d, req);
 
   }
+  sendpushnotifiation(s){
+    let req = {
+
+    }
+    return this.http.post(this.apiUrl+'offers/notification/'+s,req);
+  }
   getalllocationbyshopid(s) {
     return this.http.get(this.apiUrl + 'shop/location/' + s);
   }
