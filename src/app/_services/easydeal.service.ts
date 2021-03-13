@@ -361,4 +361,19 @@ updatelocation(req,id)
 searchbyitemname(id,searchstring){
   return this.http.get(this.apiUrl+'addrestaurantmenu/search/shop/'+id+'?data='+searchstring);
 }
+getreportbyDate(req){
+  return this.http.get(this.apiUrl+'report/dailyreport?rdate='+req);
+}
+getbydatereports(from,enddate)
+{
+  return this.http.get(this.apiUrl+'report/dailyreport/date?from_date='+from+'&to_date='+enddate);
+}
+getbydatereportsbylocation(id,from,enddate){
+  return this.http.get(this.apiUrl+'report/dailyreport/location/'+id+'?from_date='+from+'&to_date='+enddate);
+
+}
+getreportbyDatebyloations(id,date){
+  return this.http.get(this.apiUrl+'report/dailyreport/location/'+id+'?rdate='+date);
+
+}
 }
