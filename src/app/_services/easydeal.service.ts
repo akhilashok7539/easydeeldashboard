@@ -376,4 +376,8 @@ getreportbyDatebyloations(id,date){
   return this.http.get(this.apiUrl+'report/dailyreport/location/'+id+'?rdate='+date);
 
 }
+getpreordershop(id)
+{
+  return this.http.get(this.apiUrl+'preorders/shop/item/'+id);
+}
 }
