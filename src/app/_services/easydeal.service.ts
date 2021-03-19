@@ -392,4 +392,8 @@ getalldeliveryboyreport(id,fromdate,todate)
 {
   return this.http.get(this.apiUrl+'report/deliveryboy/dboy/'+id+'?from_date='+fromdate+'&to_date='+todate);
 }
+editlocationadmin(id,req)
+{
+  return this.http.patch(this.apiUrl+'admin/edit/'+id,req);
+}
 }
