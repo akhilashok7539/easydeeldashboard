@@ -77,7 +77,7 @@ export class EasydealService {
 
     }
 
-    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/state/' + a, req);
+    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/manual_state/' + a, req);
   }
   getalllocations() {
 
