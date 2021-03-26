@@ -291,6 +291,9 @@ export class EasydealService {
   getallpreorders() {
     return this.http.get(this.apiUrl + 'preorders');
   }
+  getallpreordersbylocation(id){
+    return this.http.get(this.apiUrl+'preorders/location/'+id);
+  }
   getpreorerbyuserid(id) {
     return this.http.get(this.apiUrl + 'preorders/items/' + id);
 
@@ -395,5 +398,8 @@ getalldeliveryboyreport(id,fromdate,todate)
 editlocationadmin(id,req)
 {
   return this.http.patch(this.apiUrl+'admin/edit/'+id,req);
+}
+addpoints(id,req){
+  return this.http.patch(this.apiUrl+'users/edit/radeem/'+id,req);
 }
 }
