@@ -402,4 +402,15 @@ editlocationadmin(id,req)
 addpoints(id,req){
   return this.http.patch(this.apiUrl+'users/edit/radeem/'+id,req);
 }
+getallgmeusforapproval(){
+  return this.http.get(this.apiUrl+'/location_general');
+}
+addgeneralitemmenuforapproval(formdata){
+  return this.http.post(this.apiUrl+'/location_general/post',formdata);
+
+}
+approvemenugeneral(id,req){
+  return this.http.patch(this.apiUrl+'location_general/approved/'+id,req);
+
+}
 }
