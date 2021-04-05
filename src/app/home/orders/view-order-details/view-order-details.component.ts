@@ -38,7 +38,7 @@ changenamearray:any = [];
     this.status = this.details.order_status;
     console.log(this.status);
     this.changenamearray = this.details['change_name'];
-    console.log(this.changenamearray.length);
+    // console.log(this.changenamearray.length);
     
     this.statuslogin = JSON.parse(localStorage.getItem("loginstatus"));
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
