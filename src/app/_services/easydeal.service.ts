@@ -434,4 +434,8 @@ updateredeemamount(req,id)
 {
   return this.http.patch(this.apiUrl+'locationpoint/edit/'+id,req);
 }
+editdeliveryboy(req,id){
+  return this.http.patch(this.apiUrl+'deliveryboy/edit/'+id,req);
+
+}
 }

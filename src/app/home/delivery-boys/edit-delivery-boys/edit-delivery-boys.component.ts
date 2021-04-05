@@ -18,6 +18,7 @@ export class EditDeliveryBoysComponent implements OnInit {
   address;
   mobile;
   aadhar;
+  dboyId;
   password;
   isLoading = false;
   button = 'Submit';
@@ -48,6 +49,7 @@ export class EditDeliveryBoysComponent implements OnInit {
       this.mobile = this.deliveryboy['mobileNo'];
       this.aadhar = this.deliveryboy['aadhar_id'];
       this.password = this.deliveryboy['password'];
+      this.dboyId = this.deliveryboy['_id'];
       console.log(this.location);
       
   }
@@ -77,9 +79,9 @@ export class EditDeliveryBoysComponent implements OnInit {
         "password": this.password,
         "state":"Active"
       }
-      this.easydeelservie.adddeliveryboy(req).subscribe(
+      this.easydeelservie.editdeliveryboy(req,this.dboyId).subscribe(
         data =>{
-          this.toaster.success("Delivery Boy Added");
+          this.toaster.success("Delivery Boy updated");
           this.router.navigate(['/deliveryboys']);
         },
         error =>{

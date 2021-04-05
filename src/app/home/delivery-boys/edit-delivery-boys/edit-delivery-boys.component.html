@@ -84,7 +84,7 @@
 
                 <div class="col-sm-4">
                     <label for="">Password </label>
-                    <input type="password" class="form-control" placeholder="Enter Your Password" [(ngModel)]="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password">
+                    <input type="text" class="form-control" placeholder="Enter Your Password" [(ngModel)]="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password">
 
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
