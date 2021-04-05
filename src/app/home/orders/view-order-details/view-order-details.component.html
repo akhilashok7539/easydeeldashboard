@@ -1,6 +1,6 @@
 <h6 style="text-align: center;">ORDER DETAILS</h6>
 <hr>
-<div *ngIf="status == 'Pending'" >
+<div *ngIf="status == 'Pending'">
     <button style="    float: right;" (click)="Changename()" *ngIf="textfieldstatus == false">Change Name </button>
 
 </div>
@@ -15,22 +15,34 @@
 
     <div class="col-sm-4">
         <label for="">Address</label>
-        <input type="text" class="form-control"  [(ngModel)]="address">
+        <input type="text" class="form-control" [(ngModel)]="address">
 
     </div>
     <div class="col-sm-4">
         <label for="">Phone Number</label>
-        <input type="text" class="form-control"  [(ngModel)]="number">
+        <input type="text" class="form-control" [(ngModel)]="number">
 
     </div>
     <div class="col-sm-12">
-     <button class="btn btn-info"  style="    margin: 0 auto;
+        <button class="btn btn-info" style="    margin: 0 auto;
      display: block;
      margin-top: 23px;
-     margin-bottom: 10px;" (click)="submitform()">Submit</button> 
+     margin-bottom: 10px;" (click)="submitform()">Submit</button>
     </div>
 </div>
 
+<div *ngIf="changenamearray.length != 0">
+    <hr>
+    <p style="font-weight: bold; text-align: center;">Order Address changed</p>
+    <div *ngFor="let changenamearray of changenamearray">
+        <p>Name : {{changenamearray.name}}</p>
+        <p>Phone : {{changenamearray.phone}}</p>
+        <p>Address : {{changenamearray.address}}</p>
+
+    </div>
+    <hr>
+
+</div>
 
 <p>Booking ID : {{details.order_id}}</p>
 <p>Total Amount : {{details.total_price}}</p>

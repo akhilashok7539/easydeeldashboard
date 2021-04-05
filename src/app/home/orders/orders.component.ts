@@ -77,7 +77,7 @@ assign(s){
   const dialogRef = this.dialog.open(ViewOrderDetailsComponent, {
     data: s,
     width:"500px",
-    height:"600px"
+    height:"500px"
   }
   );
   dialogRef.afterClosed().subscribe(result => {

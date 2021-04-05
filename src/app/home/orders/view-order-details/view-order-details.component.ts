@@ -25,6 +25,7 @@ textfieldstatus=false;
 name;
 address;
 number;
+changenamearray:any = [];
   sphone:any;
   userdetails:any=[];
   locationid;
@@ -36,6 +37,9 @@ number;
     console.log(this.details);
     this.status = this.details.order_status;
     console.log(this.status);
+    this.changenamearray = this.details['change_name'];
+    console.log(this.changenamearray.length);
+    
     this.statuslogin = JSON.parse(localStorage.getItem("loginstatus"));
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     if(this.details.dboy_id == null)
@@ -84,7 +88,7 @@ number;
         this.textfieldstatus= false;
       },
       error =>{
-
+        this.toaster.error("You Cannot change address again limit exceeds");
       }
     )
   }
