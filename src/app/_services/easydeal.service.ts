@@ -372,7 +372,7 @@ getbydatereports(from,enddate)
   return this.http.get(this.apiUrl+'report/dailyreport/date?from_date='+from+'&to_date='+enddate);
 }
 getbydatereportsbylocation(id,from,enddate){
-  return this.http.get(this.apiUrl+'report/dailyreport/location/'+id+'?from_date='+from+'&to_date='+enddate);
+  return this.http.get(this.apiUrl+'report/dailyreport/date/location/'+id+'?from_date='+from+'&to_date='+enddate);
 
 }
 getreportbyDatebyloations(id,date){

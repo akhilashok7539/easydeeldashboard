@@ -189,7 +189,7 @@
                     <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
                     <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div>
-                <div class="col-sm-4" style="margin-top: 20px;">
+                <div class="col-sm-4" style="margin-top: 20px;" *ngIf="loginstatus != 'locationamin'">
                     <label for="">Do you want to update the shop Location?</label>
                     <br> yes
                     <input type="radio" [(ngModel)]="condtionyesorno" value="yes" [ngModelOptions]="{standalone: true}"> No

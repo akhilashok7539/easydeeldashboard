@@ -239,6 +239,7 @@ shoplocations:any=[];
           this.isLoading = false;
           this.button = 'Submit';
           console.log(data);
+          this.formData = new FormData();
           this.formData.delete;
           this.router.navigate(['/shop']);
           this.toaster.success("Shop update Successfully")
@@ -248,7 +249,7 @@ shoplocations:any=[];
           this.button = 'Submit';
           console.log(error);
           this.formData.delete;
-
+          this.formData = new FormData();
         }
 
       )

@@ -191,7 +191,7 @@
                 </div>
 
 
-                <div class="col-sm-12">
+                <div class="col-sm-12" *ngIf="loginstatus != 'locationamin'">
                     <label for=""> Choose Locations</label>
                     <div class="row" style="padding: 15px;">
                         <div class="radio-toolbar" *ngFor="let repeatsessiondays of repeatsessiondays">

@@ -297,7 +297,7 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     let res = (this.profitpercenatge / number);
     let res2 = (this.srate*res);
     let profitrate = this.srate - res2;
-    this.prate = profitrate.toFixed();
+    this.prate = profitrate;
     console.log(this.prate);
 
   }

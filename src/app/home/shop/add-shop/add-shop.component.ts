@@ -67,13 +67,13 @@ export class AddShopComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
 
-  
+  loationiddetails:any =[];
 fileData: any;
 error;
 imagePreview;
 employee
 isvalidphoto = false;
-
+loginstatus;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService,
      private router: Router,
     private toaster: ToastrService) { }
@@ -97,12 +97,15 @@ isvalidphoto = false;
       dcharge: ['', Validators.required],
       showorhide: ['', Validators.required],
       status: ['', Validators.required],
-      check: ['', Validators.required],
+      check: [''],
       checkeddays: this.formbuilder.array([]),
     })
     this.getallCategory();
     this.getalllocations();
-
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    this.loationiddetails = JSON.parse(localStorage.getItem("userdetails"));
+    // let lid = this.loationiddetails['locationId']._id;
+    // console.log(lid);
   }
 
 
@@ -178,6 +181,9 @@ isvalidphoto = false;
     else {
       this.isLoading = true;
       this.button = 'Processing';
+      let lid = this.loationiddetails['locationId']._id;
+      console.log(lid);
+      
       this.formData.append("shop_name", this.sname.toUpperCase())
       this.formData.append("category_id", this.scat)
       this.formData.append("shop_phone", this.sphn)
@@ -197,17 +203,25 @@ isvalidphoto = false;
       this.formData.append("profitpercentage", this.profit)
       this.formData.append("shop_img", this.currentphoto)
       this.formData.append("shop_address", this.saddress)
-
+      if(this.loginstatus == 'locationamin')
+      {
+        this.formData.append("locationId",lid)
+      }
+      else{
       for (let i = 0; i < this.sessiondayssRepat.length; i++) {
         this.formData.append("locationId", this.sessiondayssRepat[i])
 
       }
+      }
+     
+      
 
       this.easydealservice.addshop(this.formData).subscribe(
         data => {
           this.isLoading = false;
           this.button = 'Submit';
           console.log(data);
+          this.formData = new FormData();
           this.formData.delete;
           this.router.navigate(['/shop']);
           this.toaster.success("Shop Added Successfully")
@@ -217,7 +231,7 @@ isvalidphoto = false;
           this.button = 'Submit';
           console.log(error);
           this.formData.delete;
-
+          this.formData = new FormData();
         }
 
       )
