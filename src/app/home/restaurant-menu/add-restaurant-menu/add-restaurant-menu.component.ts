@@ -67,6 +67,7 @@ get f() { return this.restaurantmenuFormRegistration.controls; }
           this.button = 'Submit';
           console.log(data);
           this.formData.delete;
+          this.formData=new FormData();
           this.router.navigate(['/restaurantmenu']);
           this.toastr.success("Menu Added Successfully");
          },
@@ -75,6 +76,8 @@ get f() { return this.restaurantmenuFormRegistration.controls; }
           this.button = 'Submit';
            console.log(error);
           this.formData.delete;
+          this.formData=new FormData();
+
           this.toastr.error("Menu Added Unsuccessful");
            
          }

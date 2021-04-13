@@ -111,6 +111,8 @@ export class EditCategoryComponent implements OnInit {
         data => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           console.log(data);
 
           this.router.navigate(['/home']);
@@ -120,6 +122,8 @@ export class EditCategoryComponent implements OnInit {
         error => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           console.log(error);
           this.formData.delete;
 

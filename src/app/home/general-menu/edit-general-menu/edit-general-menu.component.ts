@@ -112,6 +112,8 @@ export class EditGeneralMenuComponent implements OnInit {
         data => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           this.toastr.success("General menu updated successfully");
           this.router.navigate(['/generalmenu']);
         },
@@ -119,6 +121,8 @@ export class EditGeneralMenuComponent implements OnInit {
         error => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           this.toastr.error("General menu updated unsuccessful");
         }
       )

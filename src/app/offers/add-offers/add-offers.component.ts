@@ -181,12 +181,16 @@ export class AddOffersComponent implements OnInit {
         data => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           this.toaster.success("Offers are added");
           this.router.navigate(['/offers']);
         },
         error => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           this.toaster.error("Unable to add Offers");
         }
       )

@@ -96,6 +96,8 @@ get f() { return this.categoryFormRegistration.controls; }
          data=>{
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           console.log(data);
           this.toaster.success("Category Added Successfully")
           this.formData.delete;
@@ -105,6 +107,8 @@ get f() { return this.categoryFormRegistration.controls; }
          error=>{
           this.isLoading = false;
           this.button = 'Submit';
+          this.formData=new FormData();
+
           let err = error.error['responce'];
           this.toaster.error(err);
   
