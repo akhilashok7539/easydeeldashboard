@@ -181,8 +181,7 @@ loginstatus;
     else {
       this.isLoading = true;
       this.button = 'Processing';
-      let lid = this.loationiddetails['locationId']._id;
-      console.log(lid);
+     
       
       this.formData.append("shop_name", this.sname.toUpperCase())
       this.formData.append("category_id", this.scat)
@@ -205,6 +204,8 @@ loginstatus;
       this.formData.append("shop_address", this.saddress)
       if(this.loginstatus == 'locationamin')
       {
+        let lid = this.loationiddetails['locationId']._id;
+        console.log(lid);
         this.formData.append("locationId",lid)
       }
       else{
