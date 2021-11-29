@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class EasydealService {
   BASEURL;
-  apiUrl = "https://easydeel.in/";
+  apiUrl = "https://shopgi.in/";
   constructor(private http: HttpClient) {
     this.apiUrl;
 
